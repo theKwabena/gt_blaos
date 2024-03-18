@@ -1,0 +1,13 @@
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: blaos-sql
+    environment:
+      SA_PASSWORD: "${SA_PASSWORD}"  # Set a strong password for the SA user
+      ACCEPT_EULA: "Y"  # Accept the End-User License Agreement
+    ports:
+      - "1433:1433"  # Map container port 1433 to host port 1433 (SQL Server default port)
+    volumes:
+      - sqlserver-data:/var/opt/mssql  # Persist data outside the container
+volumes:
+    sqlserver-data:    
